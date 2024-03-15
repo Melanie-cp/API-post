@@ -7,6 +7,12 @@ const API_URL = "https://jsonplaceholder.typicode.com/posts"
 
 // fetch nos devuelve promesa, resolver con async y await o then
 
+const displayData = (data) => {
+    data.forEach((element) => {
+        postData.innerHTML += `<li><strong>${element.title}</strong><br>${element.body}</li>`;
+    })
+}
+
 const getData = async () => {
     try {
         const response = await fetch(API_URL)
@@ -18,9 +24,9 @@ const getData = async () => {
         }
         //procesar el json
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
 
-
+        displayData(data)
 
     } catch (error) {
         console.log("error", error)
@@ -28,6 +34,4 @@ const getData = async () => {
 
 }
 
-getData()
-
-// btnPost.addEventListener("click", getData)
+btnPost.addEventListener("click", getData)
